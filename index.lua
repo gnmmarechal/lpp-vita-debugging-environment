@@ -1,10 +1,13 @@
--- Init some colors
+--LPP Release
+release = "R4"
+
+-- Colours
 white = Color.new(255, 255, 255)
 yellow = Color.new(255, 255, 0)
 red = Color.new(255, 0, 0)
 
--- List a directory
-scripts = System.listDirectory("ux0:/lpp")
+-- Script directory
+scripts = System.listDirectory("ux0:/lppdebug")
 
 -- Init a index
 i = 1
@@ -18,7 +21,7 @@ while true do
 	-- Write title on screen
 	Graphics.initBlend()
 	Screen.clear()
-	Graphics.debugPrint(5, 5, "Lua Player Plus - Select script to start", yellow)
+	Graphics.debugPrint(5, 5, "Lua Player Plus "..release.." - Select script to start", yellow)
 	
 	-- Write visible menu entries
 	for j, file in pairs(scripts) do
