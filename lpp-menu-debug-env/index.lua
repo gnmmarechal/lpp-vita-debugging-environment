@@ -1,6 +1,9 @@
 --LPP Release
 release = "R4"
 
+-- FTP stuff
+ip, port = Network.initFTP()
+
 -- Colours
 white = Color.new(255, 255, 255)
 yellow = Color.new(255, 255, 0)
@@ -12,6 +15,7 @@ scripts = System.listDirectory("ux0:/lppdebug")
 -- Init a index
 i = 1
 
+ 
 -- Main loop
 while true do
 	
@@ -21,7 +25,7 @@ while true do
 	-- Write title on screen
 	Graphics.initBlend()
 	Screen.clear()
-	Graphics.debugPrint(5, 5, "Lua Player Plus "..release.." - Select script to start", yellow)
+	Graphics.debugPrint(5, 5, "LPP-Vita "..release.." - ftp://"..ip..":"..port, yellow)
 	
 	-- Write visible menu entries
 	for j, file in pairs(scripts) do
@@ -48,7 +52,8 @@ while true do
 		Screen.clear()
 		Graphics.termBlend()
 		System.wait(800000)
-		dofile("ux0:/lpp/" .. scripts[i].name)
+		Network.termFTP()
+		dofile("ux0:/lppdebug/" .. scripts[i].name)
 	elseif Controls.check(pad, SCE_CTRL_UP) and not Controls.check(oldpad, SCE_CTRL_UP) then
 		i = i - 1
 	elseif Controls.check(pad, SCE_CTRL_DOWN) and not Controls.check(oldpad, SCE_CTRL_DOWN) then
